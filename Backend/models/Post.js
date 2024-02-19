@@ -3,45 +3,47 @@ const Joi = require('joi')
 const Schema =new mongoose.Schema()
 
 const PostSchema = Schema({
-    title: {
-        type: String,
-        require: true,
-        trime: true,
-        minlength: 5,
-        maxlength: 100,
-    },
-    descrption: {
-        type: String,
-        require: true, 
-        trime: true,
-        minlength: 15,
-    },
-    // relation avec user disont foreign key
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        require: true,
-    },
-    category: {
-        type: String,
-        require:true,
-    },
-    image:{
-        type: Object,
-        default: {
-            url:"",
-            publicId: null
-        }  
-    },
-    likes:[
-        {
+        title: {
+            type: String,
+            require: true,
+            trime: true,
+            minlength: 5,
+            maxlength: 100,
+        },
+        descrption: {
+            type: String,
+            require: true, 
+            trime: true,
+            minlength: 15,
+        },
+        // relation avec user disont foreign key
+        user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        }
-    ]
-},{
-    timestamps:true
-})
+            ref: "User",
+            require: true,
+        },
+        category: {
+            type: String,
+            require:true,
+        },
+        image:{
+            type: Object,
+            default: {
+                url:"",
+                publicId: null
+            }  
+        },
+        likes:[
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
+        ]
+    },
+    {
+        timestamps:true
+    }
+)
 
 
 const Post = mongoose.model('Post',PostSchema)

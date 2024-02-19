@@ -1,6 +1,8 @@
 const {User} = require('../models/User')
 const {validateUpdateUser} = require('../models/User')
 const bcrypt = require('bcryptjs')
+const path = require('path')
+const { cloudinaryUploadImage,cloudinaryRemoveImage} = require('../utils/cloudianary')
 /**----------------------------------------------------
  * @description getAll  user <===> Sign in.
  * @router /api/user/profile
@@ -94,6 +96,29 @@ const getAllUser = async (req,res)=>{
     }
     
 }
+/**----------------------------------------------------
+ * @description profile photo  upload.
+ * @router /api/profile/photo-upload
+ * @method POST
+ * @access Private (only Logged user)
+ ------------------------------------------------------*/
+
+ const photoUploadctrl = async (req,res) => {
+    //verify if req.file contain de data
+    if(!req.file){
+        return res.status(403).json({message:'No file provided'})
+    }
+
+    // get image path
+    const imagePath = path.join(__dirname,`../images/${req.file.filename}`)
+
+    // uploade in cloudinary
+    const result = await cloudinaryUploadImage(imagePath)
+    console.log(result)
+    //send response client
+    res.status(200).json({message:'Your photo profile upload successful...'})
+ }
+
 
 /**----------------------------------------------------
  * @description getSingle  user  .
@@ -119,4 +144,4 @@ const getAllUser = async (req,res)=>{
     res.status(200).json({message:"user has been deleted !"})
  }
 
-module.exports = {getAllUser,getSingleUser,UpdateUser,DeleteUser}
+module.exports = {getAllUser,getSingleUser,UpdateUser,photoUploadctrl,DeleteUser}
