@@ -2,6 +2,7 @@ const {User} = require('../models/User')
 const {validateUpdateUser} = require('../models/User')
 const bcrypt = require('bcryptjs')
 const path = require('path')
+const fs = require('fs')
 const { cloudinaryUploadImage,cloudinaryRemoveImage} = require('../utils/cloudianary')
 /**----------------------------------------------------
  * @description getAll  user <===> Sign in.
@@ -108,15 +109,26 @@ const getAllUser = async (req,res)=>{
     if(!req.file){
         return res.status(403).json({message:'No file provided'})
     }
-
     // get image path
     const imagePath = path.join(__dirname,`../images/${req.file.filename}`)
-
     // uploade in cloudinary
     const result = await cloudinaryUploadImage(imagePath)
-    console.log(result)
+    // get user
+    const user = await User.findById(req.user.id)
+    //delete old photo profile if exist
+    if(user.profilePhoto.publicId!==null){
+        await cloudinaryRemoveImage(user.profilePhoto.publicId)
+    }
+    // change photo profile
+    user.profilePhoto={
+        url: result.secure_url,
+        publicId: result.public_id
+    }
+    await user.save()
     //send response client
     res.status(200).json({message:'Your photo profile upload successful...'})
+    //remove du dossier images
+    fs.unlinkSync(imagePath)
  }
 
 

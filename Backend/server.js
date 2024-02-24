@@ -2,6 +2,8 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+// const bodyParser = require('body-parser');
+
 
 //import les fonctions
 const connect_db = require('./config/connectToDb')
@@ -17,6 +19,7 @@ app.use(express.json())
 
 app.use('/api/auth',require('./routes/userAuths'))
 app.use('/api/users',require('./routes/userRoutes'))
+app.use('/api/post',require('./routes/posts/postRoute'))
 
 
 //End Middlewares 

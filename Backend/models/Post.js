@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Joi = require('joi')
-const Schema =new mongoose.Schema()
+const Joi = require('joi');
+const Schema = mongoose.Schema
 
-const PostSchema = Schema({
+const PostSchema = new Schema({
         title: {
             type: String,
             require: true,
@@ -10,7 +10,7 @@ const PostSchema = Schema({
             minlength: 5,
             maxlength: 100,
         },
-        descrption: {
+        description: {
             type: String,
             require: true, 
             trime: true,
@@ -50,9 +50,9 @@ const Post = mongoose.model('Post',PostSchema)
 
 //Validate create post
 const validatePost = (obj)=>{
-    const schema = Joi.Object({
+    const schema = Joi.object({
         title:Joi.string().trim().min(5).max(100).required(),
-        descrption:Joi.string().trim().min(15).required(),
+        description:Joi.string().trim().min(15).required(),
         category:Joi.string().trim().required()
     })
     return schema.validate(obj)
@@ -60,13 +60,13 @@ const validatePost = (obj)=>{
 
 //Validate update post
 const validateUpdatePost = (obj)=>{
-    const schema = Joi.Object({
+    const schema = Joi.object({
         title:Joi.string().trim().min(5).max(100),
-        descrption:Joi.string().trim().min(15),
+        description:Joi.string().trim().min(15),
         category:Joi.string().trim()
     })
     return schema.validate(obj)
 }
 
 
-module.exports = {Post,validatePost,validateUpdatePost}
+module.exports = {Post, validatePost, validateUpdatePost}

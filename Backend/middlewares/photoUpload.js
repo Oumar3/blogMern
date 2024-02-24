@@ -1,9 +1,11 @@
 const multer = require('multer')
 const path = require('path')
 
+
+// Configurer le stockage avec Multer
  const photoStorage = multer.diskStorage({
     destination: (req,file,cb) => {
-        cb(null, path.join(__dirname,'../images'))
+        cb(null, path.join(__dirname,'../images'))// Créez un dossier "uploads" à la racine de votre projet
     },
 
     filename: function (req,file,cb){
@@ -17,7 +19,7 @@ const path = require('path')
 
 //midellwar
 const photoUpload = multer({
-    storage:photoStorage,
+    storage: photoStorage,
     fileFilter:(req,file,cb)=>{
         if(file.mimetype.startsWith('image')){
             cb(null,true)
