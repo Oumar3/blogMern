@@ -119,7 +119,6 @@ const getAllPostCtrl = async (req,res) => {
  const getCountPostCtrl = async (req,res) => {
 
     const post = await Post.find().count()
-    console.log(post)
     if(!post){
         return res.status(400).json({message:'user not found'})
     }
