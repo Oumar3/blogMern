@@ -81,13 +81,50 @@ const getAllPostCtrl = async (req,res) => {
         posts = await Post.find()
             .skip((pageNumber-1) * POST_PER_PAGE)
             .limit(POST_PER_PAGE)
+            .populate('user',['-password'])
     } else if(category){
         posts = await Post.find({category})
+            .populate('user',['-password'])
     }
     else{
-        posts = await Post.find()
+        posts = await Post.find().sort({ createdAt: -1 } )
+            .populate('user',['-password'])
     }
     res.status(200).json(posts)
 }
 
-module.exports = {createPost,getAllPostCtrl}
+
+/**----------------------------------------------------
+ * @description get single  Post  .
+ * @router /api/post/id
+ * @method GET
+ * @access Public
+ ------------------------------------------------------*/
+ const getSinglePostCtrl = async (req,res) => {
+
+    const post = await Post.findById(req.params.id).populate('user',['-password'])
+    if(!post){
+        return res.status(400).json({message:'user not found'})
+    }
+
+    res.status(200).json(post)
+}
+
+/**----------------------------------------------------
+ * @description get single  Post  .
+ * @router /api/post/id
+ * @method GET
+ * @access Public
+ ------------------------------------------------------*/
+ const getCountPostCtrl = async (req,res) => {
+
+    const post = await Post.find().count()
+    console.log(post)
+    if(!post){
+        return res.status(400).json({message:'user not found'})
+    }
+
+    res.status(200).json(post)
+}
+
+module.exports = {createPost,getAllPostCtrl,getSinglePostCtrl,getCountPostCtrl}
