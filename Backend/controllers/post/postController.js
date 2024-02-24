@@ -1,7 +1,8 @@
 const{Post,validatePost} = require('../../models/Post')
 const fs = require('fs')
 const path = require('path')
-const { cloudinaryUploadImage } = require('../../utils/cloudianary')
+const { cloudinaryUploadImage,cloudinaryRemoveImage } = require('../../utils/cloudianary')
+const {validateData} = require('../../middlewares/validateData')
 
 /**----------------------------------------------------
  * @description Create new  Post  .
@@ -104,26 +105,56 @@ const getAllPostCtrl = async (req,res) => {
 
     const post = await Post.findById(req.params.id).populate('user',['-password'])
     if(!post){
-        return res.status(400).json({message:'user not found'})
+        return res.status(400).json({message:'post not found'})
     }
 
     res.status(200).json(post)
 }
 
 /**----------------------------------------------------
- * @description get single  Post  .
- * @router /api/post/id
+ * @description count Post  .
+ * @router /api/post/count
  * @method GET
- * @access Public
+ * @access Admin
  ------------------------------------------------------*/
  const getCountPostCtrl = async (req,res) => {
 
     const post = await Post.find().count()
     if(!post){
-        return res.status(400).json({message:'user not found'})
+        return res.status(400).json({message:'post not found'})
     }
 
     res.status(200).json(post)
 }
 
-module.exports = {createPost,getAllPostCtrl,getSinglePostCtrl,getCountPostCtrl}
+/**----------------------------------------------------
+ * @description delete  Post  .
+ * @router /api/post/id
+ * @method delete
+ * @access (logged user or admin)
+ ------------------------------------------------------*/
+ const DeletePostCtrl = async (req,res) => {
+    const { id } = req.params
+
+    const post = await Post.findById(id)
+
+    console.log(post)
+
+    if(!post){
+        return res.status(400).json({message:'post not found'})
+    }
+
+    if(req.user.isAdmin || req.user.id === post.user.toString()){
+        await Post.findByIdAndDelete(id) 
+        await cloudinaryRemoveImage(post.image.publicId)
+    }
+    else{
+        return res.status(400).json({message:'Access no denied forbiden'})
+    }
+
+    res.status(200).json({message:'delete successful',postId:post._id})
+}
+
+ 
+
+module.exports = {createPost,getAllPostCtrl,getSinglePostCtrl,getCountPostCtrl,DeletePostCtrl}

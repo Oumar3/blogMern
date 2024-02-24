@@ -1,6 +1,8 @@
 const router = require('express').Router()
-const {createPost,getAllPostCtrl,getSinglePostCtrl,getCountPostCtrl} = require('../../controllers/post/postController')
+const {createPost,getAllPostCtrl,getSinglePostCtrl,getCountPostCtrl,DeletePostCtrl} 
+= require('../../controllers/post/postController')
 const {verifyToken} = require('../../middlewares/verifyToken')
+const {validateData} = require('../../middlewares/validateData')
 const {photoUpload} = require('../../middlewares/photoUpload')
 
  router.route('/')
@@ -12,6 +14,7 @@ router.route('/count')
 
 router.route('/:id')
     .get(getSinglePostCtrl)
+    .delete(validateData,verifyToken,DeletePostCtrl)
 
 
 // router.get('/', getAllPostCtrl)
