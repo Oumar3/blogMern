@@ -49,7 +49,7 @@ const PostSchema = new Schema({
 const Post = mongoose.model('Post',PostSchema)
 
 //Validate create post
-const validatePost = (obj)=>{
+const validatePost = (obj) => {
     const schema = Joi.object({
         title:Joi.string().trim().min(5).max(100).required(),
         description:Joi.string().trim().min(15).required(),
@@ -59,9 +59,9 @@ const validatePost = (obj)=>{
 }
 
 //Validate update post
-const validateUpdatePost = (obj)=>{
+const validateUpdatePost = (obj) => {
     const schema = Joi.object({
-        title:Joi.string().trim().min(5).max(100),
+        title:Joi.string().trim(),
         description:Joi.string().trim().min(15),
         category:Joi.string().trim()
     })
