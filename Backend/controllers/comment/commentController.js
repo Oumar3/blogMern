@@ -39,10 +39,30 @@ const { User } = require('../../models/User')
 
  const getAllCommentCtrl = async (req,res) => {
      if(!req.user.isAdmin){
-        return res.status(400).json({message:'Access not denied'})
+        return res.status(400).json({message:'Access not denied, connect in admin compte'})
      }
-     const comments = await Comment.find().select('-password').populate('user')
+     const comments = await Comment.find().populate('user',["-password"])
      res.status(200).json(comments)
  }
 
- module.exports = {commentCtrl,getAllCommentCtrl}
+ /**----------------------------------------------------
+ * @description delete   comment  .
+ * @router /api/comment/id
+ * @method Delete
+ * @access Private (only user logged || admin)
+ ------------------------------------------------------*/
+
+ const deleteAllCommentCtrl = async (req,res) => {
+    const comment = await Comment.findById(req.params.id)
+    if(!comment){
+       return res.status(400).json({message:'comment not found'})
+    }
+    if(req.user.isAdmin || req.user.id === comment.user._id.toString()){
+        await Comment.findByIdAndDelete(req.params.id)
+        return res.status(200).json({message:'deleted successful...'})
+    }
+    
+    res.status(400).json({message:'Access not denied, logged in compte || in admin'})
+}
+
+module.exports = {commentCtrl,getAllCommentCtrl,deleteAllCommentCtrl}
