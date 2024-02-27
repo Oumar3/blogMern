@@ -247,11 +247,41 @@ res.status(200).json(updatePost)
         {
             new:true
         }
-        ).populate("user",["-password"])
-
+        )
 res.status(200).json(updatePost)
 }
 
+/**----------------------------------------------------
+ * @description Toggle like.
+ * @router /api/post/like/id
+ * @method put
+ * @access (only logged in user)
+ ------------------------------------------------------*/
+
+ const toggleLikeCtrl = async (req,res) => {
+    const loggedinUser = req.user.id
+    const { id: postId } = req.params
+    let post = await Post.findById(postId)
+    if(!post){ 
+        return res.status(404).json({message:'post not found'})
+    }
+    const isPostAlreadyLiked = post.likes.find(user=>user.toString() === loggedinUser)
+
+   if(isPostAlreadyLiked){
+        post = await Post.findByIdAndUpdate(postId,{
+            $pull: {
+                likes: loggedinUser
+            }
+        })
+   }else{
+        post = await Post.findByIdAndUpdate(postId,{
+            $push: {
+                likes: loggedinUser
+            }
+        })
+   }
+   res.status(200).json(post)
+ }
 
 
 
@@ -260,4 +290,5 @@ module.exports = {
     getSinglePostCtrl,getCountPostCtrl,
     DeletePostCtrl,UpdatePostCtrl,
     UpdateImagePostCtrl,
+    toggleLikeCtrl,
 }
