@@ -20,6 +20,7 @@ app.use(express.json())
 app.use('/api/auth',require('./routes/userAuths'))
 app.use('/api/users',require('./routes/userRoutes'))
 app.use('/api/post',require('./routes/posts/postRoute'))
+app.use('/api/comment',require('./routes/comment/commentRoute'))
 
 
 //End Middlewares 

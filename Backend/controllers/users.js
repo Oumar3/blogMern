@@ -43,7 +43,7 @@ const getAllUser = async (req,res)=>{
         // if(!req.user.isAdmin){
         //     res.status(403).json({message:'Access not denied'})
         // }  
-        const user = await User.findById(id)  
+        const user = await User.findById(id).select('-password').populate('posts')  
         // res.status(200).json(user)
         if(!user || user.length===0){
             res.status(400).json({message:'Not found user'})
@@ -133,7 +133,7 @@ const getAllUser = async (req,res)=>{
 
 
 /**----------------------------------------------------
- * @description getSingle  user  .
+ * @description delete  user  .
  * @router /api/user/profile/id
  * @method GET
  * @access Private (only admin)
