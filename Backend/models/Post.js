@@ -41,9 +41,18 @@ const PostSchema = new Schema({
         ]
     },
     {
-        timestamps:true
+        timestamps:true,
+        toJSON:{virtuals:true},
+        toObject:{virtuals:true}
     }
 )
+
+//afficher tout les commentaire lié a cette post
+PostSchema.virtual('comments',{
+    ref:'Comment',
+    foreignField:'postId',
+    localField:'_id'
+})
 
 
 const Post = mongoose.model('Post',PostSchema)

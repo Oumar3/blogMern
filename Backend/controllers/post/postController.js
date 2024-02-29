@@ -103,11 +103,12 @@ const getAllPostCtrl = async (req,res) => {
  ------------------------------------------------------*/
  const getSinglePostCtrl = async (req,res) => {
 
-    const post = await Post.findById(req.params.id).populate('user',['-password'])
+    const post = await Post.findById(req.params.id)
+                    .populate('user',['-password'])
+                    .populate('comments')
     if(!post){
         return res.status(400).json({message:'post not found'})
     }
-
     res.status(200).json(post)
 }
 
