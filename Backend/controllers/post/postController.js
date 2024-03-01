@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const { cloudinaryUploadImage,cloudinaryRemoveImage } = require('../../utils/cloudianary')
 const {validateData} = require('../../middlewares/validateData')
+const {Comment} = require('../../models/Comment')
 
 /**----------------------------------------------------
  * @description Create new  Post  .
@@ -148,6 +149,8 @@ const getAllPostCtrl = async (req,res) => {
     if(req.user.isAdmin || req.user.id === post.user.toString()){
         await Post.findByIdAndDelete(id) 
         await cloudinaryRemoveImage(post.image.publicId)
+        //suppime tout le commentaire lie a cette publication
+        await Comment.deleteMany({postId:post._id})
     }
     else{
         return res.status(400).json({message:'Access no denied forbiden'})

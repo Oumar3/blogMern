@@ -7,6 +7,7 @@ require('dotenv').config()
 
 //import les fonctions
 const connect_db = require('./config/connectToDb')
+const { errorHandle } = require('./middlewares/error')
 
 //les Middlewares 
 
@@ -21,8 +22,10 @@ app.use('/api/auth',require('./routes/userAuths'))
 app.use('/api/users',require('./routes/userRoutes'))
 app.use('/api/post',require('./routes/posts/postRoute'))
 app.use('/api/comment',require('./routes/comment/commentRoute'))
+app.use('/api/categories',require('./routes/categories/categoryRoute'))
 
 
+app.use(errorHandle)
 //End Middlewares 
 
 

@@ -3,7 +3,9 @@ const {validateUpdateUser} = require('../models/User')
 const bcrypt = require('bcryptjs')
 const path = require('path')
 const fs = require('fs')
-const { cloudinaryUploadImage,cloudinaryRemoveImage} = require('../utils/cloudianary')
+const { cloudinaryUploadImage,cloudinaryRemoveImage,cloudinaryRemoveMultiplImage} = require('../utils/cloudianary')
+const { Comment } = require('../models/Comment')
+const { Post } = require('../models/Post')
 /**----------------------------------------------------
  * @description getAll  user <===> Sign in.
  * @router /api/user/profile
@@ -139,7 +141,7 @@ const getAllUser = async (req,res)=>{
  * @access Private (only admin)
  ------------------------------------------------------*/
  const DeleteUser = async (req,res)=>{
-    id  = req.params.id
+    const {id} = req.params
     try {
         const user = User.findById(id)
         console.log(user.isAdmin)
@@ -149,7 +151,20 @@ const getAllUser = async (req,res)=>{
         if(!user){
             return res.status(403).json({message:'user not found'})
         }
-        await User.findOneAndDelete(id) 
+
+        const posts = await Post.find({user: user._id})
+
+        const publicId = posts?.map(post=>post.image.publicId)
+        
+        if(publicId?.length>0){
+            cloudinaryRemoveMultiplImage(publicId)
+        }
+
+        await cloudinaryRemoveImage(user.profilePhoto.publicId)
+        await Comment.deleteMany({user: user._id})
+        await Post.deleteMany({user: user._id})
+
+        await User.findOneAndDelete(id)
     } catch (error) {
         console.log(error.message)
     }
