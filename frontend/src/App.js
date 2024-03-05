@@ -13,7 +13,7 @@ function App() {
       <Header />
         <Routes>
           <Route exact path="/" element={<Home/>} />
-          <Route path="/post" element={<Post/>} />
+          <Route path="/posts" element={<Post/>} />
           <Route path="/post/createPost" element={<CreatePost />}/>
           <Route path="/admin" element={<Admin />}/>
           <Route path="/Register" element={<Register />}/>

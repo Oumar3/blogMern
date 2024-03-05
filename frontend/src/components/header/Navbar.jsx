@@ -8,7 +8,7 @@ const Navbar = ({ toggle, setToggle }) => {
                 <Link to="/" onClick={() => setToggle(false)} className="nav-link">
                     <i className="bi bi-house"></i>Home
                 </Link>
-                <Link to="/post" onClick={() => setToggle(false)} className="nav-link">
+                <Link to="/posts" onClick={() => setToggle(false)} className="nav-link">
                     <i className="bi bi-journal"></i>Post
                 </Link>
                 <Link to="/post/createPost" onClick={() => setToggle(false)} className="nav-link">
