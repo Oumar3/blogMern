@@ -7,6 +7,7 @@ const Post = () => {
             <section className="post-page">
                 {/* <PostList />
                 <Sidebar /> */}
+                Page Post
             </section>
         </>
     );

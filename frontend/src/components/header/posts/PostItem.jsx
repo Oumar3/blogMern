@@ -21,13 +21,13 @@ const PostItem = ({ post }) => {
                     <Link className='post-item-category' to={`/posts/categories/${post.category}`}>
                         {post.category}
                     </Link>
-                    <p>
-                        {post.description} <br /> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt provident
-                        perspiciatis ullam voluptate fuga natus officia aperiam saepe reprehenderit!
-                        Sequi sunt eveniet cupiditate magnam rem quidem natus deserunt libe delectus
-                    </p>
-                    <Link className='post-item-link' to={`/posts/detail/${post._id}`}>Lire plus</Link>
                 </div>
+                <p className='post-item--description'>
+                    {post.description} <br /> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt provident
+                    perspiciatis ullam voluptate fuga natus officia aperiam saepe reprehenderit!
+                    Sequi sunt eveniet cupiditate magnam rem quidem natus deserunt libe delectus
+                </p>
+                <Link className='post-item-link' to={`/posts/detail/${post._id}`}>Lire plus</Link>
             </div>
         </div>
     );
