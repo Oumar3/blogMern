@@ -34,3 +34,15 @@
     background-color: var(--pumpkin-color);
     color: var(--white-color);
 }
+
+@media (max-width:821px){
+    .sidebar{
+        width: 100%;
+    }
+
+    .sidebar-link{
+        /* clip-path: polygon(100% 0%,  100% 50%,  100% 100%, 5% 100%, 0% 50%, 5% 0%); */
+        display: block;
+        clip-path: none;
+    }
+}

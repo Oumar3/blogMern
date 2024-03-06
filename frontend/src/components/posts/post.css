@@ -111,3 +111,20 @@
     font-weight: bold;
     transition: all .5s ease-in-out;
 }
+
+@media (max-width:821px){
+    .post-item-image-wrapper {
+        height: 150px;
+    }
+    .post-item-image-wrapper img{
+    height: 150px;
+    object-fit: contain;
+    }
+    .post-item-title{
+        font-size: 1rem;
+    }
+    .post-item-author strong, .post-item-author .post-item-username,.post-item-date{
+        font-size: 15px;
+        font-weight: normal;
+    }
+}

@@ -64,3 +64,16 @@
     display: block;
     text-align: center;
 }
+
+@media (max-width:821px){
+    .home-container{
+        flex-direction: column;
+    }
+    .home-hero-header{
+        height: 30vh;
+    }
+    .home-title{
+        font-size: 1.2rem;
+    }
+}
+

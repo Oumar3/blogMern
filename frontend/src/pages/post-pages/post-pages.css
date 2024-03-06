@@ -10,3 +10,9 @@
     margin-top: 10px;
     padding: 0 5px;
 }
+
+@media (max-width:821px){
+    .post-page{
+        flex-direction: column;
+    }
+}
