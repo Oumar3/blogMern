@@ -10,6 +10,7 @@ const Sidebar = ({ categories }) => {
                     categories.map((category) => (
                         <Link
                             className='sidebar-link'
+                            key={category._id}
                             to={`/posts/categories/${category.title}`}
                         >
                             {category.title}

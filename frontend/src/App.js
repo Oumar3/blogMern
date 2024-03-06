@@ -6,6 +6,7 @@ import CreatePost from './pages/createPost/CreatePost'
 import Admin from './pages/admin/AdminDashboard'
 import Register from './pages/forms/Register'
 import Login from './pages/forms/Login'
+import Footer from './components/footer/Footer'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Register" element={<Register />}/>
           <Route path="/Login" element={<Login />}/>
         </Routes>
+        <Footer />
       </BrowserRouter>
   );
 }
