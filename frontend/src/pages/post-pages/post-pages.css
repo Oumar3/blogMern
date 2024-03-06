@@ -1,0 +1,12 @@
+.post-page{
+    display: flex;
+    margin: 20px;
+}
+.post-page-title{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: 2px underline;
+    margin-top: 10px;
+    padding: 0 5px;
+}

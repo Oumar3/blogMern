@@ -47,7 +47,20 @@
     flex: 9;
     background-color: red;
 }
-*/.post-sidebar{
-    flex: 6;
-    background-color: blue;
-} 
+*/
+.home-see-posts-link{
+    padding: 0 30px;
+    margin: 15px 0;
+}
+
+.home-see-posts-link .home-link{
+    width: 100%;
+    padding: 10px;
+    font-size: 21px;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    cursor: pointer;
+    border: none;
+    display: block;
+    text-align: center;
+}
