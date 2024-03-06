@@ -1,0 +1,53 @@
+.home-hero-header{
+    background-image: url('../../images/home-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100%;
+    position: relative;
+
+}
+.home-hero-header-layout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+.home-title{
+    font-size: 40px;
+    background-color: var(--main-color);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: var(--dark-color);
+    border: 1px solid #5e5b5b;
+}
+
+.home-latest-post{
+    margin-left: 30px;
+    padding-bottom: 5px;
+    font-size: 30px;
+    border-bottom: 2px solid var(--dark-color);
+    width: max-content;
+    margin-bottom: 20px;
+}
+
+.home-container{
+    padding: 0 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+/* .post-list{
+    flex: 9;
+    background-color: red;
+}
+*/.post-sidebar{
+    flex: 6;
+    background-color: blue;
+} 
