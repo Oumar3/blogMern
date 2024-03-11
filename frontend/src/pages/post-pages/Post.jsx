@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 // import Sidebar from '../../components/Sidebar/Sidebar'
 const Post = () => {
     useEffect(() => {
-        window.scrollTo(0, 220)
+        window.scrollTo(0, 0)
     })
     return (
         <>

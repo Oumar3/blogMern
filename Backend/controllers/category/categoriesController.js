@@ -63,3 +63,4 @@ const getAllCategoriesCtrl = async (req,res) => {
 }
 
  module.exports = {categoryCreateCtrl,getAllCategoriesCtrl,deleteCategoriesCtrl}
+    
