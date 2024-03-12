@@ -7,6 +7,7 @@ import Admin from './pages/admin/AdminDashboard'
 import Register from './pages/forms/Register'
 import Login from './pages/forms/Login'
 import Footer from './components/footer/Footer'
+import PostDetail from "./pages/post-details/PostDetail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" element={<Home/>} />
           <Route path="/posts" element={<Post/>} />
           <Route path="/post/createPost" element={<CreatePost />}/>
+          <Route path="/posts/detail/:id" element={<PostDetail />}/>
           <Route path="/admin" element={<Admin />}/>
           <Route path="/Register" element={<Register />}/>
           <Route path="/Login" element={<Login />}/>
