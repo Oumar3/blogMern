@@ -3,6 +3,10 @@ import { useParams, Link } from "react-router-dom"
 import { posts } from '../../dummyData'
 import './postDetail.css'
 import { toast, ToastContainer } from 'react-toastify'
+import AddComment from '../../components/comments/AddComment';
+import CommentList from '../../components/comments/CommentList';
+import swal from 'sweetalert';
+
 const PostDetail = () => {
     const { id } = useParams()
     const post = posts.find(p => p._id === parseInt(id))
@@ -16,6 +20,26 @@ const PostDetail = () => {
         else
             toast.success('image uploaded successfull')
     }
+
+    const ondelete = () => {
+        swal({
+            title: "Etes vous sur de supprimer ?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Votre post a ete supprime avec success!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    }
+
     return (
         <section className='post-detail'>
             <ToastContainer position='top-center' />
@@ -60,10 +84,11 @@ const PostDetail = () => {
                 </div>
                 <div>
                     <i className="bi bi-pencil-square"></i>
-                    <i className="bi bi-trash-fill"></i>
+                    <i onClick={ondelete} className="bi bi-trash-fill"></i>
                 </div>
             </div>
-
+            <AddComment />
+            <CommentList />
         </section>
     );
 }

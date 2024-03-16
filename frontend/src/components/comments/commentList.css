@@ -1,0 +1,36 @@
+.comment-list {
+    margin-top: 30px;
+}
+
+.comment-list-count {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.comment-item {
+    border: 1px solid var(--gray-color);
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.comment-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.comment-item-username {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.comment-item-time {
+    color: var(--pumpkin-color);
+}
+
+.comment-item-text {
+    padding-bottom: 10px;
+}
+.comment-item-icon-wrapper i{
+    cursor: pointer;
+}
