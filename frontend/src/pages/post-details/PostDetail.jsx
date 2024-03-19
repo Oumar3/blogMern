@@ -51,7 +51,7 @@ const PostDetail = () => {
                         Select new image
                     </label>
                     <input onChange={(e) => setFile(e.target.files[0])} style={{ display: 'none' }} type="file" name='file' id='file' />
-                    <button type="submit">upload</button>
+                    <button type="submit">Upload</button>
                 </form>
             </div>
             <h1 className="post-detail-title">{post.title}</h1>
