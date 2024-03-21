@@ -6,11 +6,13 @@ import { toast, ToastContainer } from 'react-toastify'
 import AddComment from '../../components/comments/AddComment';
 import CommentList from '../../components/comments/CommentList';
 import swal from 'sweetalert';
+import UpdatePostModal from './UpdatePostModal';
 
 const PostDetail = () => {
     const { id } = useParams()
     const post = posts.find(p => p._id === parseInt(id))
     const [file, setFile] = useState(null)
+    const [updatePost, setUpdatePos] = useState(false)
     useEffect(() => {
         window.scrollTo(0, 0)
     })
@@ -83,12 +85,13 @@ const PostDetail = () => {
                     <small>{post.likes.length} likes</small>
                 </div>
                 <div>
-                    <i className="bi bi-pencil-square"></i>
+                    <i onClick={() => setUpdatePos(true)} className="bi bi-pencil-square"></i>
                     <i onClick={ondelete} className="bi bi-trash-fill"></i>
                 </div>
             </div>
             <AddComment />
             <CommentList />
+            {updatePost && <UpdatePostModal post={post} setUpdatePost={setUpdatePos} />}
         </section>
     );
 }
