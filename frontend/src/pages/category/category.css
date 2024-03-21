@@ -1,0 +1,14 @@
+.category{
+    min-height: calc(100vh - 130px);
+    width: 90%;
+    margin-inline: auto;
+    padding: 20px;
+}
+
+.category-title{
+    margin: 10px 0;
+    text-transform: capitalize;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--green-color);
+}
