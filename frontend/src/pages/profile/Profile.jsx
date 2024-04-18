@@ -4,8 +4,10 @@ import { posts } from '../../dummyData';
 import './profile.css'
 import { toast, ToastContainer } from 'react-toastify';
 import swal from 'sweetalert';
+import UpdateProfile from './UpdateProfile';
 const Profile = () => {
     const [file, setFile] = useState(null)
+    const [updateProfile, setUpdateProfile] = useState(false)
     const SubmitForm = (e) => {
         e.preventDefault()
         if (!file) return toast.warning('File is not valide')
@@ -54,7 +56,7 @@ const Profile = () => {
                     <strong>Date Joined : </strong>
                     <span>Fri Nov 04 2024</span>
                 </div>
-                <button type="submit" className='profile-update-btn'>
+                <button onClick={() => setUpdateProfile(true)} type="submit" className='profile-update-btn'>
                     <i className="bi bi-file-person-fill"></i>
                     Update Profile
                 </button>
@@ -66,6 +68,9 @@ const Profile = () => {
             <button onClick={ondelete} className='delete-account-btn'>
                 Delete your Account
             </button>
+            {
+                updateProfile && <UpdateProfile setUpdateProfile={setUpdateProfile} />
+            }
         </section>
     );
 }
