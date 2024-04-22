@@ -10,6 +10,10 @@ import Footer from './components/footer/Footer'
 import PostDetail from "./pages/post-details/PostDetail";
 import Category from "./pages/category/Category";
 import Profile from "./pages/profile/Profile";
+import UserTable from "./pages/admin/UserTable";
+import PostTable from "./pages/admin/PostTable";
+import CategoryTable from "./pages/admin/CategoryTable";
+import CommentTable from "./pages/admin/CommentTable";
 
 function App() {
   return (
@@ -27,10 +31,18 @@ function App() {
             
           </Route> */}
 
-          <Route path="/admin" element={<Admin />}/>
+
+
+          {/* <Route path="/admin" element={<UserTable />}/> */}
+      
           <Route path="/Register" element={<Register />}/>
           <Route path="/Login" element={<Login />}/>
           <Route path="/profile/:id" element={<Profile/>}></Route>
+          <Route path="/admin-dashbord" element={<Admin />}/>
+          <Route path="/admin-dashbord/users-table" element={<UserTable />}/>
+          <Route path="/admin-dashbord/posts-table" element={<PostTable />}/>
+          <Route path="/admin-dashboard/categories-table" element={<CategoryTable />}/>
+          <Route path="/admin-dashboard/comments-table" element={<CommentTable />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

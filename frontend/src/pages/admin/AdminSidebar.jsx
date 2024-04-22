@@ -9,9 +9,13 @@ const AdminSidebar = () => {
                 Dashboard
             </Link>
             <ul className="admin-dashboard-list">
-                <Link className='admin-sidebar-link' to="/admin-dashboard/users-table">
+                <Link className='admin-sidebar-link' to="/admin-dashbord/users-table">
                     <i className="bi bi-person"></i>
                     Users
+                </Link>
+                <Link className='admin-sidebar-link' to="/admin-dashbord/posts-table">
+                    <i className="bi bi-phone"></i>
+                    Posts
                 </Link>
                 <Link className='admin-sidebar-link' to="/admin-dashboard/categories-table">
                     <i className="bi bi-tag-fill"></i>

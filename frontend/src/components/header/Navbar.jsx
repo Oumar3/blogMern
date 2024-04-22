@@ -14,7 +14,7 @@ const Navbar = ({ toggle, setToggle }) => {
                 <Link to="/post/createPost" onClick={() => setToggle(false)} className="nav-link">
                     <i className="bi bi-journal"></i>Create
                 </Link>
-                <Link to="/admin" onClick={() => setToggle(false)} className="nav-link">
+                <Link to="/admin-dashbord" onClick={() => setToggle(false)} className="nav-link">
                     <i className="bi bi-person-check"></i>Admin
                 </Link>
             </ul>

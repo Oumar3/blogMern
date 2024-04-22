@@ -9,7 +9,7 @@ const AdminMain = () => {
                     <h5 className="admin-card-title">Users</h5>
                     <div className="admin-card-count">120</div>
                     <div className="admin-card-link-wrapper">
-                        <Link className="admin-card-link" to="/admin-dashboard/users-table">See all users</Link>
+                        <Link className="admin-card-link" to="/admin-dashbord/users-table">See all users</Link>
                         <div className="admin-card-icon">
                             <i className="bi bi-person"></i>
                         </div>
@@ -20,7 +20,7 @@ const AdminMain = () => {
                     <h5 className="admin-card-title">Pots</h5>
                     <div className="admin-card-count">430</div>
                     <div className="admin-card-link-wrapper">
-                        <Link className="admin-card-link" to="/admin-dashboard/posts-table">See all posts</Link>
+                        <Link className="admin-card-link" to="/admin-dashbord/posts-table">See all posts</Link>
                         <div className="admin-card-icon">
                             <i className="bi bi-file-post"></i>
                         </div>
