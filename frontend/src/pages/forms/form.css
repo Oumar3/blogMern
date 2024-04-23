@@ -1,4 +1,7 @@
 .form-container{
+    /* background: url('../../images/Logine.png') no-repeat; */
+  
+    background-size: contain;
   width: 100%;
   height: calc(100vh - 130px);  
   display: flex;
