@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import './form.css'
-const Login = () => {
+const ForgotPassword = () => {
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const formSubmitHandler = (e) => {
         e.preventDefault()
 
         if (email.trim() === "") return toast.error('email is required')
-        if (password.trim() === "") return toast.error('password is required')
         console.log({
-            email, password
+            email
         });
     }
     return (
@@ -25,19 +22,10 @@ const Login = () => {
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className='form-input' id='email' placeholder='Enter your email' />
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="password" className='form-label'>Password</label>
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className='form-input' id='password' placeholder='Enter your password' />
-                </div>
-
-                <button className='form-btn' type="submit">Login</button>
+                <button className='form-btn' type="submit">Submit</button>
             </form>
-            <div className="form-footer">
-                Did you forgot your password ? <Link to="/forgot-password">Forgot </Link>
-                Don't have account ? <Link to="/register"> Register</Link>
-            </div>
         </section>
     );
 }
 
-export default Login;
+export default ForgotPassword;

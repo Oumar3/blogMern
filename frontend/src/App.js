@@ -14,6 +14,8 @@ import UserTable from "./pages/admin/UserTable";
 import PostTable from "./pages/admin/PostTable";
 import CategoryTable from "./pages/admin/CategoryTable";
 import CommentTable from "./pages/admin/CommentTable";
+import ForgotPassword from "./pages/forms/ForgotPassword";
+import ResetPassword from "./pages/forms/ResetPassword";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           {/* <Route path="/admin" element={<UserTable />}/> */}
       
           <Route path="/Register" element={<Register />}/>
+          <Route path="/forgot-password" element={<ForgotPassword />}/>
+          <Route path="/reset-password" element={<ResetPassword />}/>
           <Route path="/Login" element={<Login />}/>
           <Route path="/profile/:id" element={<Profile/>}></Route>
           <Route path="/admin-dashbord" element={<Admin />}/>
