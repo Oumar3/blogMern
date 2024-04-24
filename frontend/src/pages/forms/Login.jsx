@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import './form.css'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../../redux/apiCalls/authApiCall';
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const dispatch = useDispatch()
+
     const formSubmitHandler = (e) => {
         e.preventDefault()
 
         if (email.trim() === "") return toast.error('email is required')
         if (password.trim() === "") return toast.error('password is required')
-        console.log({
-            email, password
-        });
+
+        dispatch(loginUser({ email, password }))
     }
     return (
         <section className="form-container">

@@ -33,7 +33,7 @@ const loginUserController = async (req, res) => {
     //@TODO Sending email to verify
 
     // 4. Génération du token JWT
-    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.SECRET_KEY);
+    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin}, process.env.SECRET_KEY);
 
     // 5. Réponse au client
     return res.status(200).json({
@@ -41,6 +41,7 @@ const loginUserController = async (req, res) => {
       isAdmin: user.isAdmin,
       profilePhoto: user.profilePhoto,
       token,
+      username:user.username
     });
   } catch (error) {
     console.log(error.message);

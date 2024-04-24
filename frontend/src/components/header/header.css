@@ -90,6 +90,48 @@
     margin-right: 5px;
 }
 
+.header-right-username{
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 0 5px;
+    color: var(--white-color);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.header-right-user-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    /* flex-direction: column; */
+}
+
+.header-right-user-photo{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header-dropdown{
+    position: absolute;
+    right: 50%;
+    top: 100%;
+    width: 120px;
+    border: 1px solid var(--white-color);
+    background-color: var(--main-color);
+    border-radius: 5px;
+    padding: 5px;
+    text-align: left;
+}
+
+.header-dropdown-item{
+    display: flex;
+    font-size: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
 
 @media (max-width:821px){
     .header-menu{
