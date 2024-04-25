@@ -1,5 +1,5 @@
 import Header from "./components/header/Header";
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom'
 import Home from './pages/home/Home'
 import Post from './pages/post-pages/Post'
 import CreatePost from './pages/createPost/CreatePost'
@@ -17,8 +17,10 @@ import CommentTable from "./pages/admin/CommentTable";
 import ForgotPassword from "./pages/forms/ForgotPassword";
 import ResetPassword from "./pages/forms/ResetPassword";
 import NotFound from "./pages/not-found/NotFound";
+import { useSelector } from "react-redux";
 
 function App() {
+  const {user} = useSelector(state=>state.auth)
   return (
       <BrowserRouter>
       <Header />
@@ -26,7 +28,7 @@ function App() {
           <Route exact path="/" element={<Home/>} />
 
           <Route path="/posts" element={<Post/>} />
-          <Route path="/post/createPost" element={<CreatePost />}/>
+          <Route path="/post/createPost" element={user ? <CreatePost />:<Navigate to='/'/>}/>
           <Route path="/posts/detail/:id" element={<PostDetail />}/>
           <Route path="/posts/categories/:category" element={<Category />}/>
 
@@ -38,16 +40,16 @@ function App() {
 
           {/* <Route path="/admin" element={<UserTable />}/> */}
       
-          <Route path="/Register" element={<Register />}/>
+          <Route path="/Register" element={ !user ? <Register />: <Navigate to='/'/>}/>
           <Route path="/forgot-password" element={<ForgotPassword />}/>
           <Route path="/reset-password" element={<ResetPassword />}/>
-          <Route path="/Login" element={<Login />}/>
+          <Route path="/Login" element={!user ? <Login />: <Navigate to='/'/> } />
           <Route path="/profile/:id" element={<Profile/>}></Route>
-          <Route path="/admin-dashbord" element={<Admin />}/>
-          <Route path="/admin-dashbord/users-table" element={<UserTable />}/>
-          <Route path="/admin-dashbord/posts-table" element={<PostTable />}/>
-          <Route path="/admin-dashboard/categories-table" element={<CategoryTable />}/>
-          <Route path="/admin-dashboard/comments-table" element={<CommentTable />}/>
+          <Route path="/admin-dashbord" element={user?.isAdmin ? <Admin /> : <Navigate to='/'/>}/>
+          <Route path="/admin-dashbord/users-table" element={user?.isAdmin ? <UserTable /> : <Navigate to='/'/>}/>
+          <Route path="/admin-dashbord/posts-table" element={user?.isAdmin ? <PostTable /> : <Navigate to='/'/>}/>
+          <Route path="/admin-dashboard/categories-table" element={user?.isAdmin ? <CategoryTable /> : <Navigate to='/'/>}/>
+          <Route path="/admin-dashboard/comments-table" element={user?.isAdmin ? <CommentTable /> : <Navigate to='/'/>}/>
 
           <Route path="*" element={<NotFound />}/>
 
