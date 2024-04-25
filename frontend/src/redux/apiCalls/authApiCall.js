@@ -3,8 +3,6 @@ import request from "../../utils/request";
 import {toast} from 'react-toastify'
 //Login user
 
-
-
 export function loginUser(user){
     return async (dispatch) => {
         try {

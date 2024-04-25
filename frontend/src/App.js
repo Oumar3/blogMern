@@ -50,7 +50,6 @@ function App() {
           <Route path="/admin-dashbord/posts-table" element={user?.isAdmin ? <PostTable /> : <Navigate to='/'/>}/>
           <Route path="/admin-dashboard/categories-table" element={user?.isAdmin ? <CategoryTable /> : <Navigate to='/'/>}/>
           <Route path="/admin-dashboard/comments-table" element={user?.isAdmin ? <CommentTable /> : <Navigate to='/'/>}/>
-
           <Route path="*" element={<NotFound />}/>
 
         </Routes>
